@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Reporte guardia BDPServices</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+<!--===============================================================================================
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+
+        <div class="container-contact100">
+                <div class="wrap-contact100">
+                        <form id="mform" class="contact100-form validate-form">
+                                <span class="contact100-form-title">
+                                        Resumen de la guardia
+                                </span>
+
+                                <div class="wrap-input100 validate-input" data-validate="Reportado por">
+                                        <span class="label-input100">Nombre del tecnico</span>
+                                        <input class="input100" type="text" name="name" placeholder="Nombre">
+                                        <span class="focus-input100"></span>
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate="Hora inicio ticket">
+                                        <span class="label-input100">Fecha Inicio Ticket</span>
+                                        <input class="input100" type="datetime-local" name="h_init" placeholder="Hora de inicio">
+                                        <span class="focus-input100"></span>
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate="Hora fin ticket">
+                                        <span class="label-input100">Fecha Fin Ticket</span>
+                                        <input class="input100" type="datetime-local" name="h_fi" placeholder="Hora de fin">
+                                        <span class="focus-input100"></span>
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate="Hora inicio llamada">
+                                        <span class="label-input100">Fecha Inicio Llamada</span>
+                                        <input class="input100" type="datetime-local" name="h_initll" placeholder="Hora de inicio">
+                                        <span class="focus-input100"></span>
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate="Hora fin llamada">
+                                        <span class="label-input100">Fecha Fin Llamada</span>
+                                        <input class="input100" type="datetime-local" name="h_fill" placeholder="Hora de fin">
+                                        <span class="focus-input100"></span>
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate="Servicio">
+                                        <span class="label-input100">Servicio</span>
+                                        <input class="input100" type="text" name="servicio" placeholder="DS/RZ">
+                                        <span class="focus-input100"></span>
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate="IC">
+                                        <span class="label-input100">Ticket</span>
+                                        <input class="input100" type="text" name="ticket" placeholder="INC/CHG">
+                                        <span class="focus-input100"></span>
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate="Falsa Alarma">
+                                        <span class="label-input100">Falsa Alarma</span>
+                                        <input class="input100" type="text" name="fa" placeholder="Falsa Alarma">
+                                        <span class="focus-input100"></span>
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate="Solucionado">
+                                        <span class="label-input100">Solucionado</span>
+                                        <input class="input100" type="text" name="solucion" placeholder="solucion">
+                                        <span class="focus-input100"></span>
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate="Tipo de Intervencion">
+                                        <span class="label-input100">Tipo de Intervencion</span>
+                                        <select class="input100" type="text" name="TInt" placeholder="TInt">
+                                                <option value="Guardia">Guardia</option>
+                                                <option value="Cambio Interno">Cambio Interno</option>
+                                                <option value="IOP">IOP</option>
+                                        </select>
+                                        <span class="focus-input100"></span>
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate="Tipo de Incidencia">
+                                        <span class="label-input100">Tipo de Incidencia</span>
+                                        <select class="input100" type="text" name="TINCnt" placeholder="TINCnt">
+                                                <option value="Major">Major</option>
+                                                <option value="P4">P1</option>
+                                                <option value="P3">P2</option>
+                                                <option value="P2">P3</option>
+                                                <option value="P1">P4</option>
+                                        </select>
+                                        <span class="focus-input100"></span>
+                                </div>
+
+
+                                <div class="wrap-input100 validate-input" data-validate="Horario Interv.">
+                                        <span class="label-input100">Horario de Intervencion</span>
+                                        <select class="input100" type="text" name="HInt" placeholder="HInt">
+                                                <option value="Nocturna (20:00-08:00)">Nocturna (20:00-08:00)</option>
+                                                <option value="Laborable Diurna">Laborable Diurna</option>
+                                                <option value="Festivo Diurna">Festivo Diurna</option>
+                                        </select>
+                                        <span class="focus-input100"></span>
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate = "El resumen es requerido">
+                                        <span class="label-input100">Resumen</span>
+                                        <textarea class="input100" name="resumen" placeholder="Resumen"></textarea>
+                                        <span class="focus-input100"></span>
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate = "Datos para el equipo">
+                                        <span class="label-input100">Comentarios extra</span>
+                                        <textarea class="input100" name="comen" placeholder="Datos para el equipo"></textarea>
+                                        <span class="focus-input100"></span>
+                                </div>
+
+                                <div class="container-contact100-form-btn">
+                                        <div class="wrap-contact100-form-btn">
+                                                <div class="contact100-form-bgbtn"></div>
+                                                <button class="contact100-form-btn">
+                                                        <span>
+                                                                Enviar
+                                                                <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                                                        </span>
+                                                </button>
+                                        </div>
+                                </div>
+                        </form>
+                </div>
+        </div>
+
+
+
+        <div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+        <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+        <script src="vendor/bootstrap/js/popper.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+        <script src="vendor/select2/select2.min.js"></script>
+        <script>
+                $(".selection-2").select2({
+                        minimumResultsForSearch: 20,
+                        dropdownParent: $('#dropDownSelect1')
+                });
+        </script>
+<!--===============================================================================================-->
+        <script src="vendor/daterangepicker/moment.min.js"></script>
+        <script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+        <script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+        <script src="js/main.js"></script>
+</body>
+</html>

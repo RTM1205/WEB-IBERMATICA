@@ -1,9 +1,18 @@
-import subprocess
 import os
 from SimpleHTTPServer import SimpleHTTPRequestHandler
 from BaseHTTPServer import HTTPServer
 from urlparse import urlparse
 
+
+welcome_template = """
+                        {0}
+"""
+report_template = """
+                        {0}
+"""
+reportDone_template = """
+			{0}
+"""
 
 class MyRequestHandler(SimpleHTTPRequestHandler):
 
@@ -11,13 +20,7 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
         guardias_template = """
                         {0}
                         """
-	welcome_template = """
-                        {0}
-                        """
 	report_template = """
-                        {0}
-                        """
-	reportDone_template = """
                         {0}
                         """
         if self.path == '/':
@@ -25,7 +28,9 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
                 with open("templates/welcome.html", 'r') as w:
                         welcome_html = w.read()
                         print(welcome_html)
-			welcome_template = welcome_template.format(welcome_html)
+			welcome_template= """
+                        {0}
+                        """.format(welcome_html)
                         self.send_response(200)
             except:
                 self.send_response(400)
@@ -57,34 +62,29 @@ class MyRequestHandler(SimpleHTTPRequestHandler):
 	    except:
 		self.send_response(400)
 		report_html = "File not found"
+            
 	    self.send_header('Content-type', 'text/html')
             self.end_headers()
-            report_template = report_template.format(report_html)
             self.wfile.write(report_template)
 	elif self.path.endswith('.sh'):
+	    self.send_response(200)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
             script_name = self.path.split('=')[-1]
             email = self.headers.get('email', '')
-            if not email=='':
+            if email:
                 script_name = script_name + ' ' + email
-                output = subprocess.check_output(['sh ' + script_name + ' ' + email],  universal_newlines=True)
-	    print(script_name)
-	    cmd = 'sh ' + script_name
-            output = subprocess.check_output(["/bin/bash", "-c", cmd],  universal_newlines=True)
-	    print(output)
-            try:
-                with open("templates/reportDone.html", "r") as rd:
-                        reportDone_html = rd.read()
-                        reportDone_html = reportDone_html.format(script_name, output)
-                        self.send_response(200)
-            except:
-                self.send_response(400)
-                reportDone_html = "File not found"
-	    self.send_header('Content-type', 'text/html')
-            self.end_headers()
-            reportDone_template = reportDone_template.format(reportDone_html)
-            self.wfile.write(reportDone_template)
-
-
+            output = subprocess.check_output(['./' + script_name + ' ' + email], cwd='.', shell=True)
+	    try:
+		with open("templates/reportDone.html", "r") as rd:
+			reportDone_html = rd.read()
+			reportDone_html = reportDone.format(script_name, output)
+			self.send_response(200)
+	    except:
+		self.send_response(400)
+		reportDone_html = "File not found"
+	    reportDone_template = reportDone_template.format(reportDone_html)
+	    self.wfile.write(reportDone_template)
 
 
 if __name__ == '__main__':
